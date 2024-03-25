@@ -1,8 +1,8 @@
-- Declare Memory Component
-- Instantiate program counter
-- Port map program counter
-- Port map instruction memory
-- Port map control
-- Port map data memory
-- Port map 3-1 mux
-- Write PC logic
+- Declare Memory Component X
+- Instantiate program counter X
+- Port map program counter X
+- Port map instruction memory 
+- Port map control X
+- Port map data memory X
+- Port map 3-1 mux X
+- Write PC logic X

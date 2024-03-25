@@ -141,7 +141,6 @@ begin
 	-- Instruction Fetch
 	--------------------------------------------------------------------------
 
-  -- TODO 3: Finish implementing the program counter port map
 	CPU_PC:					PC_REG port map(
 		clk 			=>		clk,
 		reset			=>		clear,
@@ -149,7 +148,6 @@ begin
 		output		=> 			pc_reg_output
 	);
 
-  -- TODO 4: Finish implementing the instruction memory
 	CPU_Instr_MEM:			Memory generic map(INPUT => "Instr.txt") port map(
 		clk			=>		clk,
 		read_en		=>		,
@@ -168,7 +166,6 @@ begin
 	-- Instruction Decode
 	--------------------------------------------------------------------------
 
-  -- TODO 5: Finish implementing the control port map
 	CPU_Control_0:			Control port map(
 		op				=>		op,
 		alu_op		=>		ctrl_alu_op,
@@ -176,8 +173,8 @@ begin
 		reg_dest		=>		ctrl_reg_dest,
 		reg_load		=>		ctrl_reg_load,
 		reg_src		=>		ctrl_reg_src,
-		mem_read		=>		,
-		mem_write	=>
+		mem_read		=>		ctrl_mem_read,
+		mem_write	=> 			ctrl_mem_write
 	);
 
 	CPU_Registers_0:		Registers port map(
@@ -226,14 +223,13 @@ begin
 	-- Memory
 	--------------------------------------------------------------------------
 
-	-- TODO 6: Finish implementing the data memory
 	CPU_MEM_0:Memory port map(
 		clk			=>		clk,
-		read_en		=>		,
-		write_en		=>		,
-		addr			=>		,
-		data_in		=>		,
-		data_out		=>		,
+		read_en		=>		ctrl_mem_read,
+		write_en		=>		ctrl_mem_write,
+		addr			=>		alu_result,
+		data_in		=>		rt_data,
+		data_out		=>		mem_dataout,
 		mem_dump 	=>		'0'
 	);
 
@@ -241,14 +237,13 @@ begin
 	-- Write Back
 	--------------------------------------------------------------------------
 
-	-- TODO 7: Finish implementing the 3-1 MUX
 	slt_input	<=	"000000000000000"&alu_result(15);
 	CPU_reg_src_mux:		mux3_1 generic map(16) port map(
-		Input1		=>		,
-		Input2		=>		,
-		Input3		=>		,
-		S				=>		,
-		Sout			=>
+		Input1		=>		mem_dataout,
+		Input2		=>		alu_result,
+		Input3		=>		slt_input,
+		S			=>		ctrl_reg_src,
+		Sout		=> 	 	reg_src_mux_out
 	);
 
 end Behavioral;
