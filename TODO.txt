@@ -1,7 +1,7 @@
 - Declare Memory Component X
 - Instantiate program counter X
 - Port map program counter X
-- Port map instruction memory 
+- Port map instruction memory X
 - Port map control X
 - Port map data memory X
 - Port map 3-1 mux X
