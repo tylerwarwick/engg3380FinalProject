@@ -1,0 +1,7 @@
+- Port map memory
+- Instantiate program counter
+- Port map program counter
+- Port map instruction memory
+- Port map control
+- Port map data memory
+- Port map 3-1 mux
