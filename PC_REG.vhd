@@ -18,13 +18,10 @@ begin
 	begin
 		-- If reset is zero, the output will be zero. 
 		-- Otherwise, at the rising edge of the clock, the input will be transfered to the output.
-		if (rising_edge(clk)) then
-			if reset = '0' then
-				output <= (others => '0'); 
-			else 
-				output <= input;
-	       end if;
-	   end if;
+				if (reset = '0') then
+				    output <= (others => '0');
+				elsif rising_edge(clk) then
+				    output <= input;			         
+			   end if;
 	end process clock;
-	
 end Behavioral;
