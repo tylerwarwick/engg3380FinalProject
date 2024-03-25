@@ -150,11 +150,11 @@ begin
 
 	CPU_Instr_MEM:			Memory generic map(INPUT => "Instr.txt") port map(
 		clk			=>		clk,
-		read_en		=>		,
-		write_en		=>		,
-		addr			=>		,
+		read_en		=>		'1',
+		write_en		=>		'0',
+		addr			=>		pc_reg_output,
 		data_in		=>		x"0000",
-		data_out		=>		,
+		data_out		=>		instruction,
 		mem_dump 	=>		'0'
 	);
 
