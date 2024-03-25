@@ -72,7 +72,7 @@ architecture Behavioral of CPU_3380 is
 	end component;
 
 	component mux2_1
-   generic (WIDTH : positive:=16);
+   	generic (WIDTH : positive:=16);
 	port(
 		Input1		:	in		std_logic_vector(WIDTH-1 	downto 0);
 		Input2		:	in		std_logic_vector(WIDTH-1 	downto 0);
@@ -82,23 +82,27 @@ architecture Behavioral of CPU_3380 is
 
 
 	component Memory
-   generic (
+   	generic (
        INPUT : string := "in.txt";
        OUTPUT : string := "out.txt"
-   );
+   	);
     port (
-  	-- TODO 1: Finish implementing the memory component
-
+		clk : in std_logic;  
+		read_en : in std_logic;
+		write_en : in std_logic;
+		addr : in std_logic_vector(15 downto 0);
+		data_in : in std_logic_vector(15 downto 0);
+		data_out : out std_logic_vector(15 downto 0);
+		mem_dump : in std_logic := '0'
     );
 	end component;
 
-	-- TODO 2: Finish implementing the program counter component
 	component PC_REG
 	port(
 		clk : in std_logic;
 		reset : in std_logic;
-		Input :
-		Output :
+		Input : in std_logic_vector(15 downto 0);
+		Output : out std_logic_vector(15 downto 0)
 	);
 	end component;
 
@@ -141,10 +145,9 @@ begin
 	CPU_PC:					PC_REG port map(
 		clk 			=>		clk,
 		reset			=>		clear,
-		input			=>		,
-		output		=>
+		input			=>		pc_plus_2,
+		output		=> 			pc_reg_output
 	);
-	pc_plus_2		<=
 
   -- TODO 4: Finish implementing the instruction memory
 	CPU_Instr_MEM:			Memory generic map(INPUT => "Instr.txt") port map(
