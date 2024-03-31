@@ -51,7 +51,8 @@ architecture Behavioral of CPU_3380 is
 			reg_load	:	out	std_logic;
 			reg_src		:	out	std_logic_vector( 1 downto 0);
 			mem_read	:	out	std_logic;
-			mem_write	:	out	std_logic
+			mem_write	:	out	std_logic;
+			pc_src		:   out std_logic;
 		);
 	end component;
 
@@ -131,6 +132,7 @@ architecture Behavioral of CPU_3380 is
 	signal	ctrl_reg_load		:	std_logic;
 	signal	ctrl_mem_read		:	std_logic;
 	signal	ctrl_mem_write		:	std_logic;
+	signal  ctrl_pc_src			:   std_logic;
 
 	signal	slt_input			:	std_logic_vector(15 downto 0);
 
@@ -177,7 +179,8 @@ begin
 		reg_load		=>		ctrl_reg_load,
 		reg_src		=>		ctrl_reg_src,
 		mem_read		=>		ctrl_mem_read,
-		mem_write	=> 			ctrl_mem_write
+		mem_write	=> 			ctrl_mem_write,
+		pc_src  	=>		ctrl_pc_src
 	);
 
 	CPU_Registers_0:		Registers port map(
