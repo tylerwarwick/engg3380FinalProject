@@ -5,13 +5,15 @@ use ieee.std_logic_unsigned.all;
 Entity Control is
 	port(
 		op		:	in	std_logic_vector( 3 downto 0);
+		zero    :   in  std_logic;
 		alu_op		:	out	std_logic_vector( 1 downto 0);
 		alu_src		:	out	std_logic;
 		reg_dest		:	out	std_logic;
 		reg_load		:	out	std_logic;
 		reg_src		:	out	std_logic_vector(1 downto 0);
 		mem_read		:	out	std_logic;
-		mem_write	:	out	std_logic
+		mem_write	:	out	std_logic;
+		pc_src      :   out std_logic_vector(1 downto 0)
 		);
 End Control;
 
@@ -31,6 +33,7 @@ begin
 				reg_src		<=	"01";
 				mem_read		<=	'0';
 				mem_write	<=	'0';
+				pc_src      <=  '00';
 
 			-- op=1, SUB
 			when x"1" =>
@@ -41,6 +44,7 @@ begin
 				reg_src		<=	"01";
 				mem_read		<=	'0';
 				mem_write	<=	'0';
+				pc_src      <=  '00';
 
 			-- op=2, AND
 			when x"2" =>
@@ -51,6 +55,7 @@ begin
 				reg_src		<=	"01";
 				mem_read		<=	'0';
 				mem_write	<=	'0';
+				pc_src      <=  '00';
 
 			-- op=3, OR
 			when x"3" =>
@@ -61,6 +66,7 @@ begin
 				reg_src		<=	"01";
 				mem_read		<=	'0';
 				mem_write	<=	'0';
+				pc_src      <=  '00';
 
 			-- op=4, ADDi
 			when x"4" =>
@@ -71,7 +77,8 @@ begin
 				reg_src		<=	"01";
 				mem_read		<=	'0';
 				mem_write	<=	'0';
-
+				pc_src      <=  '00';
+					
 			-- op=5, SUBi
 			when x"5" =>
 				alu_op		<=	"01";
@@ -81,6 +88,7 @@ begin
 				reg_src		<=	"01";
 				mem_read		<=	'0';
 				mem_write	<=	'0';
+				pc_src      <=  '00';
 
 			-- op=8, LW
 			when x"8" =>
@@ -91,6 +99,7 @@ begin
 				reg_src		<=	"00";
 				mem_read		<=	'1';
 				mem_write	<=	'0';
+				pc_src      <=  '00';
 
 			-- op=C, SW
 			when x"C" =>
@@ -101,7 +110,8 @@ begin
 				reg_src		<=	"01";
 				mem_read		<=	'0';
 				mem_write	<=	'1';
-	
+				pc_src      <=  '00';
+
 			-- op=7, SLT
 			when x"7" =>
 				alu_op		<=	"01";
@@ -111,6 +121,29 @@ begin
 				reg_src		<=	"10";
 				mem_read		<=	'0';
 				mem_write	<=	'0';
+				pc_src      <=  '00';			
+
+			-- op=9, BNE
+			when x"9" =>
+				alu_op		<=	"01";
+				alu_src		<=	'0';
+				reg_dest		<=	'0';
+				reg_load		<=	'1';
+				reg_src		<=	"10";
+				mem_read		<=	'0';
+				mem_write	<=	'0';
+				pc_src      <=  '01' when zero = '0' else '00';
+
+			-- op=B, JUMP
+			when x"B" =>
+				alu_op		<=	"01";
+				alu_src		<=	'0';
+				reg_dest		<=	'0';
+				reg_load		<=	'1';
+				reg_src		<=	"10";
+				mem_read		<=	'0';
+				mem_write	<=	'0';
+				pc_src      <=  '10';
 
 			when others =>
 				alu_op		<=	"00";
@@ -120,6 +153,7 @@ begin
 				reg_src		<=	"01";
 				mem_read		<=	'0';
 				mem_write	<=	'0';
+				pc_src      <=  '00';
 
 		end case;
 	end process;
