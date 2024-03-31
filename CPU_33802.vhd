@@ -137,12 +137,21 @@ architecture Behavioral of CPU_3380 is
 	signal	slt_input			:	std_logic_vector(15 downto 0);
 
 	signal	reg_src_mux_input3:	std_logic_vector(15 downto 0);
+	signal  pc_input            :   std_logic_vector(15 downto 0);
 	signal	pc_plus_2			:	std_logic_vector(15 downto 0);
 	signal	pc_reg_output		:	std_logic_vector(15 downto 0);
 begin
 	--------------------------------------------------------------------------
 	-- Instruction Fetch
 	--------------------------------------------------------------------------
+
+	CPU_MUX_PC: 		mux3_1 generic map(16) port map(
+	    Input1	=> pc_plus_2,
+		Input2	=> pc_branch,
+		Input3	=> pc_jump,
+		S		=> ctrl_pc_src,
+		Sout	=> pc_input
+	);
 
 	CPU_PC:					PC_REG port map(
 		clk 			=>		clk,
