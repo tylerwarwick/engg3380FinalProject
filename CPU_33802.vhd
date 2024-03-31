@@ -21,7 +21,7 @@ architecture Behavioral of CPU_3380 is
 			S			:	in		std_logic_vector(1 downto 0);
 			Sout		:	out 	std_logic_vector(15 downto 0);
 			Cout		:	out	std_logic;
-			zero        :   out std_logic
+			zero        :   out std_logic;
 		);
 	END COMPONENT;
 
@@ -140,10 +140,20 @@ architecture Behavioral of CPU_3380 is
 	signal  pc_input            :   std_logic_vector(15 downto 0);
 	signal	pc_plus_2			:	std_logic_vector(15 downto 0);
 	signal	pc_reg_output		:	std_logic_vector(15 downto 0);
+	signal  pc_branch           :   std_logic_vector(15 downto 0);
+	signal  jump_addr 			:   std_logic_vector(15 downto 0);
+
 begin
 	--------------------------------------------------------------------------
 	-- Instruction Fetch
 	--------------------------------------------------------------------------
+	-- Add immediate to branch
+	pc_branch <= pc_plus_2 + sign_ex_out
+
+	-- Concat jump target
+	constant mask : std_logic_vector(15 downto 0) := "1111000000000000";
+	jump_addr <= rd & rs & rt;
+	pc_jump <= (pc_reg_output AND mask) OR jump_addr
 
 	CPU_MUX_PC: 		mux3_1 generic map(16) port map(
 	    Input1	=> pc_plus_2,
