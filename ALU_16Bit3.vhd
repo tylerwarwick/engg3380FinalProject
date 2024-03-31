@@ -8,7 +8,8 @@ port(
 		B		:	in		std_logic_vector(15 downto 0);
 		S		:	in		std_logic_vector(1 downto 0);
 		Sout	:	out 	std_logic_vector(15 downto 0);
-		Cout	:	out	std_logic
+		Cout	:	out	std_logic;
+		zero    :   out std_logic
 );
 End;
 
@@ -46,5 +47,8 @@ Begin
 	alu13	:	ALU	port map(A(13),	B(13),	Carry(12),	S,	Sout(13),	Carry(13));
 	alu14	:	ALU	port map(A(14),	B(14),	Carry(13),	S,	Sout(14),	Carry(14));
 	alu15	:	ALU	port map(A(15),	B(15),	Carry(14),	S,	Sout(15),	Cout);
+
+	-- Need to add on zero flag to alu unit
+	zero <= '1' when sout /= (others => 0) else '0';
 End;
 	

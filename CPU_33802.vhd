@@ -20,7 +20,8 @@ architecture Behavioral of CPU_3380 is
 			B			:	in		std_logic_vector(15 downto 0);
 			S			:	in		std_logic_vector(1 downto 0);
 			Sout		:	out 	std_logic_vector(15 downto 0);
-			Cout		:	out	std_logic
+			Cout		:	out	std_logic;
+			zero        :   out std_logic
 		);
 	END COMPONENT;
 
