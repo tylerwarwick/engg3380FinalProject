@@ -162,7 +162,7 @@ begin
 	
 	pc_plus_2 <= std_logic_vector(pc_reg_output + 2);
 
-	CPU_Instr_MEM:			Memory generic map(INPUT => "Instr.txt") port map(
+	CPU_Instr_MEM:			Memory generic map(INPUT => "Instr2.txt") port map(
 		clk			=>		clk,
 		read_en		=>		'1',
 		write_en		=>		'0',
