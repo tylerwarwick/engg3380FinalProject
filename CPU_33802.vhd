@@ -166,7 +166,7 @@ begin
 	CPU_PC:					PC_REG port map(
 		clk 			=>		clk,
 		reset			=>		clear,
-		input			=>		pc_plus_2,
+		input			=>		pc_input,
 		output		=> 			pc_reg_output
 	);
 	
