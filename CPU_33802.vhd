@@ -45,6 +45,7 @@ architecture Behavioral of CPU_3380 is
 	COMPONENT Control
 		port(
 			op			:	in	std_logic_vector( 3 downto 0);
+			zero 		:   in std_logic;
 			alu_op		:	out	std_logic_vector( 1 downto 0);
 			alu_src		:	out	std_logic;
 			reg_dest	:	out	std_logic;
@@ -144,6 +145,7 @@ architecture Behavioral of CPU_3380 is
 	signal  pc_branch           :   std_logic_vector(15 downto 0);
 	signal  jump_addr 			:   std_logic_vector(15 downto 0);
 	signal pc_jump             :   std_logic_vector(15 downto 0);
+	signal zeroFlag				:  std_logic;
 	
 	-- Constants
 	constant mask : std_logic_vector(15 downto 0) := "1111000000000000";
@@ -196,6 +198,7 @@ begin
 
 	CPU_Control_0:			Control port map(
 		op				=>		op,
+		zerp 			=> 		zeroFlag,
 		alu_op		=>		ctrl_alu_op,
 		alu_src		=>		ctrl_alu_src,
 		reg_dest		=>		ctrl_reg_dest,
@@ -245,7 +248,8 @@ begin
 		B				=>		alu_src_mux_out,
 		S				=>		ctrl_alu_op,
 		Sout			=>		alu_result,
-		Cout			=>		cout
+		Cout			=>		cout,
+		zero 			=>  	zeroFlag
 	);
 
 	--------------------------------------------------------------------------
