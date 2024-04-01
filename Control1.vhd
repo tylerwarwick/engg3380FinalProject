@@ -126,7 +126,7 @@ begin
 			-- op=9, BNE
 			when x"9" =>
 				alu_op		<=	"01";
-				alu_src		<=	'1';
+				alu_src		<=	'0';
 				reg_dest		<=	'0';
 				reg_load		<=	'0';
 				reg_src		<=	"10";
