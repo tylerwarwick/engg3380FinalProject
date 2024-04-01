@@ -132,7 +132,8 @@ begin
 				reg_src		<=	"10";
 				mem_read		<=	'0';
 				mem_write	<=	'0';
-				pc_src      <=  "01" when zero = '0' else "00";
+				pc_src      <=  "01" when zero = '0' else 
+				                "00" when zero = '1';
 
 			-- op=B, JUMP
 			when x"B" =>
