@@ -127,7 +127,7 @@ begin
 			when x"9" =>
 				alu_op		<=	"01";
 				alu_src		<=	'0';
-				reg_dest		<=	'0';
+				reg_dest		<=	'1';
 				reg_load		<=	'0';
 				reg_src		<=	"10";
 				mem_read		<=	'0';
