@@ -21,7 +21,7 @@ architecture Behavioral of CPU_3380 is
 			S			:	in		std_logic_vector(1 downto 0);
 			Sout		:	out 	std_logic_vector(15 downto 0);
 			Cout		:	out	std_logic;
-			zero        :   out std_logic;
+			zero        :   out std_logic
 		);
 	END COMPONENT;
 
@@ -52,7 +52,7 @@ architecture Behavioral of CPU_3380 is
 			reg_src		:	out	std_logic_vector( 1 downto 0);
 			mem_read	:	out	std_logic;
 			mem_write	:	out	std_logic;
-			pc_src		:   out std_logic;
+			pc_src		:   out std_logic
 		);
 	end component;
 
@@ -70,7 +70,8 @@ architecture Behavioral of CPU_3380 is
 		Input2		:	in		std_logic_vector(WIDTH-1 	downto 0);
 		Input3		:	in		std_logic_vector(WIDTH-1 	downto 0);
 		S				:	in		std_logic_vector(1 			downto 0);
-		Sout			:	out	std_logic_vector(WIDTH-1 	downto 0));
+		Sout			:	out	std_logic_vector(WIDTH-1 	downto 0)
+		);
 	end component;
 
 	component mux2_1
@@ -132,7 +133,7 @@ architecture Behavioral of CPU_3380 is
 	signal	ctrl_reg_load		:	std_logic;
 	signal	ctrl_mem_read		:	std_logic;
 	signal	ctrl_mem_write		:	std_logic;
-	signal  ctrl_pc_src			:   std_logic;
+	signal  ctrl_pc_src			:   std_logic_vector(1 downto 0); -- Changed to std_logic_vector(1 downto 0);
 
 	signal	slt_input			:	std_logic_vector(15 downto 0);
 
@@ -142,18 +143,21 @@ architecture Behavioral of CPU_3380 is
 	signal	pc_reg_output		:	std_logic_vector(15 downto 0);
 	signal  pc_branch           :   std_logic_vector(15 downto 0);
 	signal  jump_addr 			:   std_logic_vector(15 downto 0);
+	signal pc_jump             :   std_logic_vector(15 downto 0);
+	
+	-- Constants
+	constant mask : std_logic_vector(15 downto 0) := "1111000000000000";
 
 begin
 	--------------------------------------------------------------------------
 	-- Instruction Fetch
 	--------------------------------------------------------------------------
 	-- Add immediate to branch
-	pc_branch <= pc_plus_2 + sign_ex_out
+	pc_branch <= pc_plus_2 + sign_ex_out;
 
 	-- Concat jump target
-	constant mask : std_logic_vector(15 downto 0) := "1111000000000000";
 	jump_addr <= rd & rs & rt;
-	pc_jump <= (pc_reg_output AND mask) OR jump_addr
+	pc_jump <= (pc_reg_output AND mask) OR jump_addr;
 
 	CPU_MUX_PC: 		mux3_1 generic map(16) port map(
 	    Input1	=> pc_plus_2,

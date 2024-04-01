@@ -33,7 +33,7 @@ begin
 				reg_src		<=	"01";
 				mem_read		<=	'0';
 				mem_write	<=	'0';
-				pc_src      <=  '00';
+				pc_src      <=  "00";
 
 			-- op=1, SUB
 			when x"1" =>
@@ -44,7 +44,7 @@ begin
 				reg_src		<=	"01";
 				mem_read		<=	'0';
 				mem_write	<=	'0';
-				pc_src      <=  '00';
+				pc_src      <=  "00";
 
 			-- op=2, AND
 			when x"2" =>
@@ -55,7 +55,7 @@ begin
 				reg_src		<=	"01";
 				mem_read		<=	'0';
 				mem_write	<=	'0';
-				pc_src      <=  '00';
+				pc_src      <=  "00";
 
 			-- op=3, OR
 			when x"3" =>
@@ -66,7 +66,7 @@ begin
 				reg_src		<=	"01";
 				mem_read		<=	'0';
 				mem_write	<=	'0';
-				pc_src      <=  '00';
+				pc_src      <=  "00";
 
 			-- op=4, ADDi
 			when x"4" =>
@@ -77,7 +77,7 @@ begin
 				reg_src		<=	"01";
 				mem_read		<=	'0';
 				mem_write	<=	'0';
-				pc_src      <=  '00';
+				pc_src      <=  "00";
 					
 			-- op=5, SUBi
 			when x"5" =>
@@ -88,7 +88,7 @@ begin
 				reg_src		<=	"01";
 				mem_read		<=	'0';
 				mem_write	<=	'0';
-				pc_src      <=  '00';
+				pc_src      <=  "00";
 
 			-- op=8, LW
 			when x"8" =>
@@ -99,7 +99,7 @@ begin
 				reg_src		<=	"00";
 				mem_read		<=	'1';
 				mem_write	<=	'0';
-				pc_src      <=  '00';
+				pc_src      <=  "00";
 
 			-- op=C, SW
 			when x"C" =>
@@ -110,7 +110,7 @@ begin
 				reg_src		<=	"01";
 				mem_read		<=	'0';
 				mem_write	<=	'1';
-				pc_src      <=  '00';
+				pc_src      <=  "00";
 
 			-- op=7, SLT
 			when x"7" =>
@@ -121,7 +121,7 @@ begin
 				reg_src		<=	"10";
 				mem_read		<=	'0';
 				mem_write	<=	'0';
-				pc_src      <=  '00';			
+				pc_src      <=  "00";			
 
 			-- op=9, BNE
 			when x"9" =>
@@ -132,7 +132,7 @@ begin
 				reg_src		<=	"10";
 				mem_read		<=	'0';
 				mem_write	<=	'0';
-				pc_src      <=  '01' when zero = '0' else '00';
+				pc_src      <=  "01" when zero = '0' else "00";
 
 			-- op=B, JUMP
 			when x"B" =>
@@ -143,7 +143,7 @@ begin
 				reg_src		<=	"10";
 				mem_read		<=	'0';
 				mem_write	<=	'0';
-				pc_src      <=  '10';
+				pc_src      <=  "10";
 
 			when others =>
 				alu_op		<=	"00";
@@ -153,7 +153,7 @@ begin
 				reg_src		<=	"01";
 				mem_read		<=	'0';
 				mem_write	<=	'0';
-				pc_src      <=  '00';
+				pc_src      <=  "00";
 
 		end case;
 	end process;
