@@ -156,7 +156,7 @@ begin
 	pc_branch <= pc_plus_2 + sign_ex_out;
 
 	-- Concat jump target
-	jump_addr <= rd & rs & rt;
+	jump_addr <= "0000" & rd & rs & rt;
 	pc_jump <= (pc_reg_output AND mask) OR jump_addr;
 
 	CPU_MUX_PC: 		mux3_1 generic map(16) port map(
