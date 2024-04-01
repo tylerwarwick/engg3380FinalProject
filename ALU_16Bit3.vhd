@@ -26,7 +26,7 @@ Architecture behavior of ALU_16Bit is
 	END COMPONENT;
 
 	signal Carry		:	std_logic_vector(14 downto 0);
-	signal Sout_temp 	:   std_logic_vector(15 downto 0)
+	signal Sout_temp 	:   std_logic_vector(15 downto 0);
 	
 Begin
 	alu00	:	ALU	port map(A(0),		B(0),		S(0),			S,	Sout_temp(0),		Carry(0));
@@ -51,6 +51,6 @@ Begin
 
 	-- Need to add on zero flag to alu unit
 	zero <= '1' when Sout_temp="0000000000000000" else '0';
-	Sout <= Sout_temp
+	Sout <= Sout_temp;
 End;
 	
