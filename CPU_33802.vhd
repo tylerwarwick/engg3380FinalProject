@@ -52,7 +52,7 @@ architecture Behavioral of CPU_3380 is
 			reg_src		:	out	std_logic_vector( 1 downto 0);
 			mem_read	:	out	std_logic;
 			mem_write	:	out	std_logic;
-			pc_src		:   out std_logic
+			pc_src		:   out std_logic_vector( 1 downto 0)
 		);
 	end component;
 
