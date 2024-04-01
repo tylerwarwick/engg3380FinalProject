@@ -198,7 +198,7 @@ begin
 
 	CPU_Control_0:			Control port map(
 		op				=>		op,
-		zerp 			=> 		zeroFlag,
+		zero 			=> 		zeroFlag,
 		alu_op		=>		ctrl_alu_op,
 		alu_src		=>		ctrl_alu_src,
 		reg_dest		=>		ctrl_reg_dest,
