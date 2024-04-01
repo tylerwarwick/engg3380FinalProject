@@ -20,7 +20,7 @@ End Control;
 architecture syn of Control is
 
 begin
-	process (op, zero) is
+	process (op) is
 	begin
 		case op is
 
