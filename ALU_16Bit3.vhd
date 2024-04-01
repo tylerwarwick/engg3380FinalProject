@@ -49,6 +49,6 @@ Begin
 	alu15	:	ALU	port map(A(15),	B(15),	Carry(14),	S,	Sout(15),	Cout);
 
 	-- Need to add on zero flag to alu unit
-	zero <= '1' when Sout = (others => 0) else zero <= '0';
+	zero <= '1' when Sout="0000000000000000" else '0';
 End;
 	
